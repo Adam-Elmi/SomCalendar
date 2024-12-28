@@ -1,0 +1,19 @@
+{
+  "name": "somcalendar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adam-Elmi/SomCalendar.git"
+  },
+  "author": "Adam Elmi Adamcade123@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Adam-Elmi/SomCalendar/issues"
+  },
+  "homepage": "https://github.com/Adam-Elmi/SomCalendar#readme"
+}
