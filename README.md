@@ -9,3 +9,4 @@ Waxaa ka mid ah adeegyada ay bixiso:
 - Xilliyada waxbarasho ama fasaxyada. 
 
 Waxaa loo qorsheeyey in ay noqoto mid fudud oo la is dhexgelin karo barnaamijyada casriga ah.
+> ⚠️ **Warning:** SomCalendar waa maktabad wali ku jirta horumarinta (in-progress).
