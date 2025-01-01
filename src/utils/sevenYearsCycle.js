@@ -1,5 +1,3 @@
-import fullYearCycle from "./fullYearCycle.js";
-
 function sevenYearsCycle(fullYear) {
     try {
         const variableName = {fullYear};
@@ -16,7 +14,3 @@ function sevenYearsCycle(fullYear) {
         console.error("Caught an error: ", error.message);
     }
 };
-
-const result = sevenYearsCycle(fullYearCycle(60));
-
-console.log(result); 
