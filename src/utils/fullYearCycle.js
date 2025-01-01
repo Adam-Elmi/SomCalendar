@@ -1,5 +1,3 @@
-import fiftyDaysCycle from "./fiftyDaysCycle.js";
-
 function fullYearCycle(fiftyDays) {
     try {
         const variableName = {fiftyDays};
@@ -13,5 +11,4 @@ function fullYearCycle(fiftyDays) {
     }
 };
 
-const result = fullYearCycle(fiftyDaysCycle(1));
-console.log(result);
+export default fullYearCycle;
