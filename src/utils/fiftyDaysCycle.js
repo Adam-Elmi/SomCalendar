@@ -1,15 +1,15 @@
 function fiftyDaysCycle(currentWeek) {
     try {
-        const variableName = {currentWeek};
+        const variableName = { currentWeek };
 
-        if(typeof currentWeek !== "number") {
+        if (typeof currentWeek !== "number") {
             throw new TypeError(`${Object.keys(variableName)[0]} is not a number.`);
         }
 
-        if(currentWeek <= 0) {
+        if (currentWeek <= 0) {
             throw new Error(`${Object.keys(variableName)[0]} must be greater than 0.`);
         }
-        else if(currentWeek > 7) {
+        else if (currentWeek > 7) {
             throw new Error(`${Object.keys(variableName)[0]} must be less than 7.`);
         }
         return (currentWeek * 7) + 1;
@@ -20,4 +20,3 @@ function fiftyDaysCycle(currentWeek) {
 
 export default fiftyDaysCycle;
 
-  
