@@ -1,4 +1,0 @@
-1. Javascript Date object wuxu ku salaysan yahay nidaamka Gregorian calendar, sida wada ognahay nidaamkaas wuxu ino sheegaya in sannadku ka bilaabmo 1 Lixkor(January) kuna dhamaado 31 Xays(December), halka kalandar-ka soomaalidu ka bilaabmo 20-ka Karan(July) kuna dhamaado Karan(July) sannadka kale 21-kiisa.
-Si toos ah uma isticmaali karo Date object madaama kalandar-ka soomaalidu ka duwan yahay Gregorian calendar.
-
-2. Sida kalandarka soomaalida ku cad, bisha Todob(February) waxay ku dhamaata 30 maalimood. Hadaynu isticmaalno Javascript Date object wuxu bishaas ka dhigaya 28 ama 29 maalimood. Sidaas awgeed wa inaan dib u xisaabin sameeya.
