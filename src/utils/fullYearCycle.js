@@ -9,8 +9,10 @@ function fullYearCycle(fiftyDays, leapYear = 0) {
             const yearCycle = (fiftyDays * 7) + 15;
             const vName = {yearCycle};
             switch(true) {
-                case yearCycle <= 365 + leapYear:
+                case typeof fiftyDays === "number" && yearCycle <= 365 + leapYear:
                     return yearCycle;
+                case typeof fiftyDays !== "number":
+                    throw new Error(`${Object.keys(vName)[0]} is not a number.`);
                 default:
                     throw new Error(`${Object.keys(vName)[0]} must equal to or less than 365 + leap year.`);
             }
