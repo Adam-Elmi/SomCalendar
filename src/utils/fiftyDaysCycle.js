@@ -1,9 +1,12 @@
 function fiftyDaysCycle(currentWeek) {
     try {
         const variableName = {currentWeek};
-        if(!currentWeek) return;
 
-        if(currentWeek < 0) {
+        if(typeof currentWeek !== "number") {
+            throw new TypeError(`${Object.keys(variableName)[0]} is not a number.`);
+        }
+
+        if(currentWeek <= 0) {
             throw new Error(`${Object.keys(variableName)[0]} must be greater than 0.`);
         }
         else if(currentWeek > 7) {
