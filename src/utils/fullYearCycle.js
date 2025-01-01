@@ -7,15 +7,15 @@ function fullYearCycle(fiftyDays) {
         }
         else if (fiftyDays) {
             const yearCycle = (fiftyDays * 7) + 15;
-            const vName = { yearCycle };
+            const vName = Object.keys({ yearCycle })[0];
 
             switch (true) {
                 case typeof fiftyDays === "number" && yearCycle <= 365:
                     return yearCycle;
                 case typeof fiftyDays !== "number":
-                    throw new Error(`${Object.keys(vName)[0]} is not a number.`);
+                    throw new Error(`${vName} is not a number.`);
                 default:
-                    throw new Error(`${Object.keys(vName)[0]} must equal to or less than 365.`);
+                    throw new Error(`${vName} must equal to or less than 365.`);
             }
         }
     } catch (error) {
