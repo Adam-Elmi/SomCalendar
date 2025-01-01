@@ -7,11 +7,12 @@ function fullYearCycle(fiftyDays, leapYear = 0) {
         }
         else if(fiftyDays) {
             const yearCycle = (fiftyDays * 7) + 15;
+            const vName = {yearCycle};
             switch(true) {
                 case yearCycle <= 365 + leapYear:
                     return yearCycle;
                 default:
-                    throw new Error(`${Object.keys(variableName)[0]} must equal to or less than 365 + leap year.`);
+                    throw new Error(`${Object.keys(vName)[0]} must equal to or less than 365 + leap year.`);
             }
         }
     } catch (error) {
