@@ -14,3 +14,5 @@ function sevenYearsCycle(fullYear) {
         console.error("Caught an error: ", error.message);
     }
 };
+
+export default sevenYearsCycle;
