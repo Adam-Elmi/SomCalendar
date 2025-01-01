@@ -1,4 +1,5 @@
 import fiftyDaysCycle from "./fiftyDaysCycle.js";
+
 function fullYearCycle(fiftyDays) {
     try {
         const variableName = {fiftyDays};
@@ -8,9 +9,9 @@ function fullYearCycle(fiftyDays) {
         }
         return (7 * fiftyDays) + 15;
     } catch (error) {
-        console.error(`Caught an error: ${error}`);
+        console.error(`Caught an error: ${error.message}`);
     }
 };
 
-const result = fullYearCycle(fiftyDaysCycle());
+const result = fullYearCycle(fiftyDaysCycle(2));
 console.log(result);
