@@ -3,20 +3,20 @@ import fullYearCycle from "./fullYearCycle.js";
 function sevenYearsCycle(fullYear) {
     try {
         const variableName = {fullYear};
-        const varName = Object.keys(fullYear)[0];
+        const varName = Object.keys(variableName)[0];
         switch(true) {
             case !fullYear:
-                throw new Error(`${varName ? varName : "" } is not found.`);
+                throw new Error(`${ varName } is not found.`);
             case typeof fullYear === "number":
                 return (fullYear * 7);
             default:
-                throw new Error(`${ varName ? varName : "" } is not a number.`);
+                throw new Error(`${ varName } is not a number.`);
         }
     } catch (error) {
-        console.error("Caught an error2: ", error.message);
+        console.error("Caught an error: ", error.message);
     }
 };
 
-const result = sevenYearsCycle(fullYearCycle(50));
+const result = sevenYearsCycle(fullYearCycle(60));
 
 console.log(result); 
