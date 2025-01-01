@@ -1,8 +1,9 @@
 function fiftyDaysCycle(currentWeek) {
     try {
         const variableName = {currentWeek};
+        if(!currentWeek) return;
 
-        if(!currentWeek || currentWeek <= 0) {
+        if(currentWeek < 0) {
             throw new Error(`${Object.keys(variableName)[0]} must be greater than 0.`);
         }
         else if(currentWeek > 7) {
