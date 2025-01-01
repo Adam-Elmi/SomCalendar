@@ -1,7 +1,7 @@
-
 function fiftyDaysCycle(currentWeek) {
     try {
         const variableName = {currentWeek};
+
         if(!currentWeek || currentWeek <= 0) {
             throw new Error(`${Object.keys(variableName)[0]} must be greater than 0.`);
         }
@@ -14,8 +14,6 @@ function fiftyDaysCycle(currentWeek) {
     }
 };
 
-const result = fiftyDaysCycle(10);
-
-console.log(result);
+export default fiftyDaysCycle;
 
   
