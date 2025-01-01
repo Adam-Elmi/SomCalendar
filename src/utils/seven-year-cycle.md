@@ -1,6 +1,6 @@
     # The seven-year cycle
     -----------------------
-    - Sannadka toddobada sano waxay muujinaysaa in sannad walba uu ku dhammaado maalinta isbuuca, 
+    - Wareega todobada sano waxay muujinaysaa in sannad walba uu ku dhammaado maalinta isbuuca, 
     iyadoo toddobada maalmood ee isbuuc kasta ay hal mar ku soo noqdaan sannad walba.
 
     ### Tusaale ahaan:
