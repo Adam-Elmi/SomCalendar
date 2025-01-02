@@ -2,7 +2,8 @@
     Method getDay() wuxu kaso bilaaba maalinta axada,  sidan ayuu u shaqeeya:
     0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday,
     4 = Thursday, 5 = Friday, 6 = Saturday).
-    sidaas darteed ayaan maalinta sabtida halka hoose u galiyey
+    sidaas darteed ayaan maalinta sabtida halka hoose u galiyey, 
+    taas oo ino fudaydinaysa inu method-kan u shaqeeyo sidii aynu rabnay u shaqeeyo.
 */
 const somaliDays = [
     "Koobin", // Axad
