@@ -1,23 +1,21 @@
 function fullYearCycle(fiftyDays) {
-    try {
-        if (!fiftyDays) {
-            throw new Error("fiftyDays is not found.");
-        }
-        else if (fiftyDays) {
-            const yearCycle = (fiftyDays * 7) + 15;
+  if (!fiftyDays) {
+    console.error("Error: fiftyDays is not found.");
+    return;
+  }
 
-            switch (true) {
-                case typeof fiftyDays === "number" && yearCycle <= 365:
-                    return yearCycle;
-                case typeof fiftyDays !== "number":
-                    throw new Error("fiftyDays is not a number.");
-                default:
-                    throw new Error("fiftyDays must equal to or less than 365.");
-            }
-        }
-    } catch (error) {
-        console.error(`Caught an error: ${error.message}`);
-    }
-};
+  const yearCycle = fiftyDays * 7 + 15;
+
+  switch (true) {
+    case typeof fiftyDays === "number" && yearCycle <= 365:
+      return yearCycle;
+    case typeof fiftyDays !== "number":
+      console.error("Error: fiftyDays is not a number.");
+      return;
+    default:
+      console.error("Error: fiftyDays must equal to or less than 365.");
+      return;
+  }
+}
 
 export default fullYearCycle;
