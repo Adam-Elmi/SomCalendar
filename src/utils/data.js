@@ -1,11 +1,11 @@
 const somaliDays = [
-    "Soo Roga", // Sabti
     "Koobin", // Axad
     "Lammin", // Isniin
     "Lamatoke", // Salaasa
     "Koodaar", // Arbaca
     "Hakisa", // Khamiis
-    "Hakisa-Bile" // Jimce
+    "Hakisa-Bile", // Jimce
+    "Soo Roga", // Sabti
 ];
 
 /*
@@ -35,18 +35,18 @@ const somaliDays = [
 */
 
 const somaliMonths = [
-    "Lixkor", // January
-    "Todob", // February
-    "Aminla", // March
-    "Fushade", // April
-    "Gu’soore", // May
-    "Samuulad", // June
     "Karan", // July
     "Habar-adhi", // August
     "Diraac-good", // September
     "Dayrweyn", // October
     "Ximir", // November
-    "Xays" // December
+    "Xays", // December
+    "Lixkor", // January
+    "Todob", // February
+    "Aminla", // March
+    "Fushade", // April
+    "Gu'soore", // May
+    "Samuulad" // June
 ];
 
 /*
@@ -56,3 +56,5 @@ const somaliMonths = [
  ee taariikhda Gregory (Gregorian calendar) 
 */
 const somaliFestival = "Dabshid";
+
+export {somaliDays, somaliMonths, somaliFestival};
