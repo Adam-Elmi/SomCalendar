@@ -1,3 +1,9 @@
+/* 
+    Method getDay() wuxu kaso bilaaba maalinta axada,  sidan ayuu u shaqeeya:
+    0 = Sunday, 1 = Monday, 2 = Tuesday, 3 = Wednesday,
+    4 = Thursday, 5 = Friday, 6 = Saturday).
+    sidaas darteed ayaan maalinta sabtida halka hoose u galiyey
+*/
 const somaliDays = [
     "Koobin", // Axad
     "Lammin", // Isniin
