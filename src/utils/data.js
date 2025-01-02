@@ -42,18 +42,18 @@ const somaliDays = [
 */
 
 const somaliMonths = [
-    "Karan", // July
-    "Habar-adhi", // August
-    "Diraac-good", // September
-    "Dayrweyn", // October
-    "Ximir", // November
-    "Xays", // December
     "Lixkor", // January
     "Todob", // February
     "Aminla", // March
     "Fushade", // April
     "Gu'soore", // May
-    "Samuulad" // June
+    "Samuulad", // June
+    "Karan", // July
+    "Habar-adhi", // August
+    "Diraac-good", // September
+    "Dayrweyn", // October
+    "Ximir", // November
+    "Xays" // December
 ];
 
 /*
