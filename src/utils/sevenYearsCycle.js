@@ -1,9 +1,9 @@
 function sevenYearsCycle(fullYear) {
   switch (true) {
-    case !fullYear:
+    case (!fullYear):
       console.error("Error: fullYear is not found.");
       return;
-    case typeof fullYear === "number":
+    case (typeof fullYear === "number"):
       return fullYear * 7;
     default:
       console.error("Error: fullYear is not a number.");
