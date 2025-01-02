@@ -7,9 +7,9 @@ function fullYearCycle(fiftyDays) {
   const yearCycle = fiftyDays * 7 + 15;
 
   switch (true) {
-    case typeof fiftyDays === "number" && yearCycle <= 365:
+    case (typeof fiftyDays === "number" && yearCycle <= 365):
       return yearCycle;
-    case typeof fiftyDays !== "number":
+    case( typeof fiftyDays !== "number"):
       console.error("Error: fiftyDays is not a number.");
       return;
     default:
