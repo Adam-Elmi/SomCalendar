@@ -1,20 +1,18 @@
 function fiftyDaysCycle(currentWeek) {
-    try {
-        if (typeof currentWeek !== "number") {
-            throw new TypeError("currentWeek is not a number.");
-        }
+  if (typeof currentWeek !== "number") {
+    console.error("currentWeek must be a number.");
+    return;
+  }
 
-        if (currentWeek <= 0) {
-            throw new Error("currentWeek must be greater than 0.");
-        }
-        else if (currentWeek > 7) {
-            throw new Error("currentWeek must be less than 7.");
-        }
-        return (currentWeek * 7) + 1;
-    } catch (error) {
-        console.error("Caught an error:", error.message);
-    }
-};
+  if (currentWeek <= 0) {
+    console.error("currentWeek must be greater than 0.");
+    return;
+  } else if (currentWeek > 7) {
+    console.error("currentWeek must be less than or equal to 7.");
+    return;
+  }
+
+  return currentWeek * 7 + 1;
+}
 
 export default fiftyDaysCycle;
-
