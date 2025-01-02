@@ -5,14 +5,20 @@ class SomaliDate extends Date {
         super();
     }
     currentMonth() {
+        if(!somaliMonths) {
+           throw new ReferenceError("somaliMonths is not found.");
+        }
         return somaliMonths[this.getMonth()];
     }
     currentDay() {
+        if(!somaliDays) {
+            throw new ReferenceError("somaliDays is not found.");
+         }
         return somaliDays[this.getDay()];
     }
 };
 
 const somaliDate = new SomaliDate();
 
-console.log(somaliDate.currentMonth());
-console.log(somaliDate.currentDay());
+
+
