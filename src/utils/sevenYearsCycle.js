@@ -1,16 +1,14 @@
 function sevenYearsCycle(fullYear) {
-    try {
-        switch (true) {
-            case !fullYear:
-                throw new Error("fullYear is not found.");
-            case typeof fullYear === "number":
-                return (fullYear * 7);
-            default:
-                throw new Error("fullYear is not a number.");
-        }
-    } catch (error) {
-        console.error("Caught an error: ", error.message);
-    }
-};
+  switch (true) {
+    case !fullYear:
+      console.error("Error: fullYear is not found.");
+      return;
+    case typeof fullYear === "number":
+      return fullYear * 7;
+    default:
+      console.error("Error: fullYear is not a number.");
+      return;
+  }
+}
 
 export default sevenYearsCycle;
