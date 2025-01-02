@@ -1,21 +1,18 @@
 function fullYearCycle(fiftyDays) {
     try {
-        const variableName = { fiftyDays };
-
         if (!fiftyDays) {
-            throw new Error(`${Object.keys(variableName)[0]} is not found.`)
+            throw new Error("fiftyDays is not found.");
         }
         else if (fiftyDays) {
             const yearCycle = (fiftyDays * 7) + 15;
-            const vName = Object.keys({ yearCycle })[0];
 
             switch (true) {
                 case typeof fiftyDays === "number" && yearCycle <= 365:
                     return yearCycle;
                 case typeof fiftyDays !== "number":
-                    throw new Error(`${vName} is not a number.`);
+                    throw new Error("fiftyDays is not a number.");
                 default:
-                    throw new Error(`${vName} must equal to or less than 365.`);
+                    throw new Error("fiftyDays must equal to or less than 365.");
             }
         }
     } catch (error) {
