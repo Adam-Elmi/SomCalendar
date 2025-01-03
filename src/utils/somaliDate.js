@@ -22,8 +22,12 @@ class SomaliDate extends Date {
   getFiftyDays() {
     return fiftyDaysCycle(days[this.currentDay()]);
   }
+  getFullYearCycle() {
+    return fullYearCycle(this.getFiftyDays());
+  }
 }
 
 const somaliDate = new SomaliDate();
 
 console.log(somaliDate.getFiftyDays());
+console.log(somaliDate.getFullYearCycle());
