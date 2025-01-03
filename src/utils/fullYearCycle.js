@@ -13,7 +13,7 @@ function fullYearCycle(fiftyDays) {
       console.error("Error: fiftyDays is not a number.");
       return;
     default:
-      console.error("Error: fiftyDays must equal to or less than 365.");
+      console.error("Error: yearCycle must equal to or less than 365.");
       return;
   }
 }
