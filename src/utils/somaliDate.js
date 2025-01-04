@@ -1,7 +1,5 @@
 import { somaliMonths, somaliDays, days } from "./data.js";
 import getCurrentDay from "./getCurrentDay.js";
-import fiftyDaysCycle from "./fiftyDaysCycle.js";
-import sevenYearsCycle from "./sevenYearsCycle.js";
 
 class SomaliDate extends Date {
   constructor() {
@@ -22,12 +20,8 @@ class SomaliDate extends Date {
   getToday() {
     return getCurrentDay(this, this.getFullYear(), this.getMonth());
   }
-  getFiftyDays() {
-    return fiftyDaysCycle(days[this.currentDay()]);
-  }
 }
 
 const somaliDate = new SomaliDate();
 
-console.log(somaliDate.getFiftyDays());
-console.log(somaliDate.getFullYearCycle());
+console.log(somaliDate.getToday());
