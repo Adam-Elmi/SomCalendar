@@ -16,18 +16,13 @@ function getMonths(currentYear, currentMonth, months) {
     }
 }
 
-
-
-function getCurrentDay() {
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth();
-    const currentYear = currentDate.getFullYear();
+function getCurrentDay(currentDate, currentYear, currentMonth) {
     const months = [];
     const previousYearMonths = [];
     let sumOfDays = 0;
 
     getMonths(currentYear, currentMonth, months);
-    
+
     for (let i = 0; i < months.length; i++) {
         if (i === currentMonth + 1) {
             break;
@@ -35,19 +30,25 @@ function getCurrentDay() {
             const previousYear = currentYear - 1;
             getMonths(previousYear, i, previousYearMonths);
             const monthsAfterJuly = previousYearMonths.slice(7);
-            const sumOfMonthsAfterJuly = monthsAfterJuly.reduce((initialValue, currentValue) => {
-                return initialValue + currentValue;
-            }, 0);
+            const sumOfMonthsAfterJuly = monthsAfterJuly.reduce(
+                (initialValue, currentValue) => {
+                    return initialValue + currentValue;
+                },
+                0
+            );
 
             const previousMonths = months.slice(0, currentMonth);
-            const sumOfPreviousMonths = previousMonths.reduce((initialValue, currentValue) => {
-                return initialValue + currentValue;
-            }, 0);
+            const sumOfPreviousMonths = previousMonths.reduce(
+                (initialValue, currentValue) => {
+                    return initialValue + currentValue;
+                },
+                0
+            );
 
             sumOfDays = sumOfMonthsAfterJuly + sumOfPreviousMonths + currentDate.getDate();
         }
     }
-    console.log(sumOfDays);
+    return sumOfDays;
 }
 
-getCurrentDay();
+export default getCurrentDay;
