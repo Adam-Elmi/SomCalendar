@@ -45,7 +45,7 @@ function getCurrentDay(currentDate, currentYear, currentMonth) {
                 0
             );
 
-            sumOfDays = sumOfMonthsAfterJuly + sumOfPreviousMonths + currentDate.getDate();
+            sumOfDays = sumOfMonthsAfterJuly + sumOfPreviousMonths + currentDate.getDate() - 1;
         }
     }
     return sumOfDays;
