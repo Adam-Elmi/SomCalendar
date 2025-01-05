@@ -1,4 +1,4 @@
-import { somaliMonths, somaliDays, days } from "./data.js";
+import { somaliMonths, somaliDays } from "./data.js";
 import getCurrentDay from "./getCurrentDay.js";
 
 class SomaliDate extends Date {
@@ -24,4 +24,6 @@ class SomaliDate extends Date {
 
 const somaliDate = new SomaliDate();
 
+console.log(somaliDate.currentMonth());
+console.log(somaliDate.currentDay());
 console.log(somaliDate.getToday());
