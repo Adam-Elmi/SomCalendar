@@ -65,14 +65,4 @@ const somaliMonths = [
 */
 const somaliFestival = "Dabshid";
 
-const days = {
-    "Soo Roga": 1,
-    Koobin: 2,
-    Lammin: 3,
-    Lamatoke: 4,
-    Koodaar: 5,
-    Hakisa: 6,
-    "Hakisa-Bile": 7,
-  };
-
-export {somaliDays, somaliMonths, somaliFestival, days};
+export {somaliDays, somaliMonths, somaliFestival};
