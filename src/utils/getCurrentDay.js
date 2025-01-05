@@ -1,34 +1,18 @@
-function getMonths(currentYear, currentMonth, months) {
-    for (let i = 1; i <= 12; i++) {
-        const lastDayOfMonth = new Date(currentYear, currentMonth + i, 0);
-        let daysIn = lastDayOfMonth.getDate();
-        if (currentYear % 4 === 0) {
-            if (currentYear % 100 === 0) {
-                if (currentYear % 400 === 0) {
-                    daysIn + 1;
-                }
-            } else {
-                daysIn + 1;
-            }
-        }
-
-        months.push(daysIn);
-    }
-}
+import getAllMonths from "./getAllMonths.js";
 
 function getCurrentDay(currentDate, currentYear, currentMonth) {
-    const months = [];
+    const currentYearMonths = [];
     const previousYearMonths = [];
     let sumOfDays = 0;
 
-    getMonths(currentYear, currentMonth, months);
+    getAllMonths(currentYear, currentMonth, currentYearMonths);
 
-    for (let i = 0; i < months.length; i++) {
+    for (let i = 0; i < currentYearMonths.length; i++) {
         if (i === currentMonth + 1) {
             break;
         } else {
             const previousYear = currentYear - 1;
-            getMonths(previousYear, i, previousYearMonths);
+            getAllMonths(previousYear, i, previousYearMonths);
             const monthsAfterJuly = previousYearMonths.slice(7);
             const sumOfMonthsAfterJuly = monthsAfterJuly.reduce(
                 (initialValue, currentValue) => {
@@ -37,7 +21,7 @@ function getCurrentDay(currentDate, currentYear, currentMonth) {
                 0
             );
 
-            const previousMonths = months.slice(0, currentMonth);
+            const previousMonths = currentYearMonths.slice(0, currentMonth);
             const sumOfPreviousMonths = previousMonths.reduce(
                 (initialValue, currentValue) => {
                     return initialValue + currentValue;
