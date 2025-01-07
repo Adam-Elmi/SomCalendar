@@ -1,5 +1,5 @@
-import { somaliMonths, somaliDays } from "./utils/data.js";
-import getCurrentDay from "./getCurrentDay.js";
+import { somaliMonths, somaliDays } from "./data/data.js";
+import getCurrentDay from "./methods/getCurrentDay.js";
 import getYearStart from "./methods/getYearStart.js";
 
 class SomaliDate extends Date {
