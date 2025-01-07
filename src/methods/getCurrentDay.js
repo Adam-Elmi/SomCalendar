@@ -1,4 +1,4 @@
-import getAllMonths from "./getAllMonths.js";
+import getAllMonths from "../methods/getAllMonths.js";
 
 function getCurrentDay(currentDate, currentYear, currentMonth) {
     const currentYearMonths = [];
