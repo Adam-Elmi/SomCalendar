@@ -1,5 +1,6 @@
 import { somaliMonths, somaliDays } from "./data.js";
 import getCurrentDay from "./getCurrentDay.js";
+import getYearStart from "./getYearStart.js";
 
 class SomaliDate extends Date {
   constructor() {
@@ -20,10 +21,11 @@ class SomaliDate extends Date {
   getToday() {
     return getCurrentDay(this, this.getFullYear(), this.getMonth());
   }
+  getYearName() {
+    return getYearStart(this.getFullYear());
+  }
 }
 
 const somaliDate = new SomaliDate();
 
-console.log(somaliDate.currentMonth());
-console.log(somaliDate.currentDay());
-console.log(somaliDate.getToday());
+console.log(somaliDate.getYearName());
