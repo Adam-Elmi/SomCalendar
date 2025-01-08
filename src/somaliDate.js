@@ -22,7 +22,7 @@ class SomaliDate extends Date {
     return getCurrentDay(this, this.getFullYear(), this.getMonth());
   }
   getYearName() {
-    return getYearStart(this.getFullYear());
+    return getYearStart(this.getFullYear()); // Remainder: Should return day name
   }
 }
 
