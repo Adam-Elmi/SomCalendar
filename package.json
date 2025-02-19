@@ -4,7 +4,8 @@
   "description": "SomCalendar waa maktabad aan ku sameeyey JavaScript, ujeedadeeduna tahay in la abuuro kalandar ama taariikh-tirsi diiradda saaraya xusida taariikhda Soomaalida, xilliyada, iyo waqtiyada muhiimka ah ee bulshada Soomaaliyeed.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node dist/somali_calendar.js",
+    "date": "tsc && node dist/utils/time_difference.js"
   },
   "repository": {
     "type": "git",
