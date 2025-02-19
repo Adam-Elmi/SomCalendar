@@ -2,7 +2,7 @@ import { somaliMonths, somaliDays } from "./data/data.js";
 import getCurrentDay from "./methods/getCurrentDay.js";
 import getYearStart from "./methods/getYearStart.js";
 
-class SomaliDate extends Date {
+class SomaliCalendar extends Date {
   constructor() {
     super();
   }
@@ -12,13 +12,13 @@ class SomaliDate extends Date {
     }
     return somaliMonths[this.getMonth()];
   }
-  currentDay() {
+  dayName() {
     if (!somaliDays) {
       throw new ReferenceError("somaliDays is not found.");
     }
     return somaliDays[this.getDay()];
   }
-  getToday() {
+  currentDay() {
     return getCurrentDay(this, this.getFullYear(), this.getMonth());
   }
   getYearName() {
@@ -26,6 +26,6 @@ class SomaliDate extends Date {
   }
 }
 
-const somaliDate = new SomaliDate();
+const somaliDate = new SomaliCalendar();
 
-console.log(somaliDate.getYearName());
+console.log(somaliDate.currentDay());

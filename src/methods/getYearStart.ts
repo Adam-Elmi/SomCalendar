@@ -1,6 +1,6 @@
 import previousMonth from "./previousMonth.js";
 
-function getYearStart(currentYear) {
+function getYearStart(currentYear: number): number {
     const startDay = previousMonth(currentYear, 7) - 11;
     return startDay;
 }

@@ -5,7 +5,7 @@
     sidaas darteed ayaan maalinta sabtida halka hoose u galiyey, 
     taas oo ino fudaydinaysa inu method-kan u shaqeeyo sidii aynu rabnay u shaqeeyo.
 */
-const somaliDays = [
+const somaliDays: Array<string> = [
     "Koobin", // Axad
     "Lammin", // Isniin
     "Lamatoke", // Salaasa
@@ -41,7 +41,7 @@ const somaliDays = [
     ---------------
 */
 
-const somaliMonths = [
+const somaliMonths: Array<string> = [
     "Lixkor", // January
     "Todob", // February
     "Aminla", // March
@@ -62,6 +62,6 @@ const somaliMonths = [
  waxaana loo badin jiray inay dhacdo 20-ka Karan (July)
  ee taariikhda Gregory (Gregorian calendar) 
 */
-const somaliFestival = "Dabshid";
+const somaliFestival: string = "Dabshid";
 
 export {somaliDays, somaliMonths, somaliFestival};
