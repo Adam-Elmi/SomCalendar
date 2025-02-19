@@ -29,7 +29,7 @@ const somaliDays: Array<string> = [
     Ximir (30 maalimood) - November
     Xays (30 maalimood) - December
     ---------------
-    [Jillaal]
+    [Jiilaal]
     Lixkor (31 maalimood) - January
     Todob (30 maalimood) - February
     Aminla (30 maalimood) - March
