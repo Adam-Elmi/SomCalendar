@@ -1,9 +1,8 @@
 {
   "name": "somcalendar",
   "version": "1.0.0",
-  "description": "",
+  "description": "SomCalendar waa maktabad aan ku sameeyey JavaScript, ujeedadeeduna tahay in la abuuro kalandar ama taariikh-tirsi diiradda saaraya xusida taariikhda Soomaalida, xilliyada, iyo waqtiyada muhiimka ah ee bulshada Soomaaliyeed.",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,10 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/Adam-Elmi/SomCalendar.git"
   },
-  "author": "Adam Elmi Adamcade123@gmail.com",
+  "keywords": [],
+  "author": "",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Adam-Elmi/SomCalendar/issues"
   },
-  "homepage": "https://github.com/Adam-Elmi/SomCalendar#readme"
+  "homepage": "https://github.com/Adam-Elmi/SomCalendar#readme",
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
 }
