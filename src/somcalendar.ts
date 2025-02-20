@@ -21,23 +21,23 @@ const somaliDays: Array<string> = [
     ---------------
     [Xagaa]
     Karan (31 maalimood)  - July
-    Habar-adhi (30 maalimood) - August
+    Habar-adhi (30 maalimood) - August (31 days)
     Diraac-good (30 maalimood) - September
     ---------------
     [Dayr]
     Dayrweyn (31 maalimood) - October
     Ximir (30 maalimood) - November
-    Xays (30 maalimood) - December
+    Xays (30 maalimood) - December (31 days)
     ---------------
     [Jiilaal]
     Lixkor (31 maalimood) - January
-    Todob (30 maalimood) - February
-    Aminla (30 maalimood) - March
+    Todob (30 maalimood) - February (28 days or 29 days in leap years)
+    Aminla (30 maalimood) - March (31 days)
     ---------------
     [Gu’]
-    Fushade (31 maalimood) - April
-    Gu’soore (30 maalimood) - May
-    Samuulad (31 maalimood) - June
+    Fushade (31 maalimood) - April (30 days)
+    Gu’soore (30 maalimood) - May (31 days)
+    Samuulad (31 maalimood) - June (30 days)
     ---------------
 */
 
@@ -65,40 +65,124 @@ const somaliMonths: Array<string> = [
 
 const somaliFestival: string = "Dabshid";
 
-/*
-    Helper function: timeDifference
-*/
-
-function timeDifference(currentYear: number, currentMonth: number, currentDay: number): number {
-    let start = new Date(`${currentYear - 1}-7-20`);
-    let end = new Date(`${currentYear}-${currentMonth}-${currentDay}`);
-
-    let diff = end.getTime() - start.getTime();
-    let days = diff / (1000 * 60 * 60 * 24);
-
-    return days;
-};
-
 
 /*
     Helper function: get_all_months
 */
-const _months = [
+const _months: Array<string> = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
 
-let _m: object[] = [];
+
+interface Months_Info {
+    total_days: number,
+    _m: object[],
+    _d: Array<number>
+}
+
+const info: Months_Info = {
+    total_days: 0,
+    _m: [],
+    _d: []
+}
 
 function get_all_months() {
     const date = new Date();
     for (let i = 0; i < _months.length; i++) {
-        _m.push({
+        info._m.push({
             [_months[i]]: new Date(date.getFullYear(), i + 1, 0).getDate()
         });
     }
-    return _m;
+    info.total_days = info._m.map((v) => Object.values(v).join("")).map(v => {
+        info._d.push(parseInt(v, 10));
+        return parseInt(v, 10);
+    }).reduce((i, c) => {
+        return i + c;
+    }, 0);
+    return info;
 };
+
+/*
+    Helper function: destructure
+*/
+
+function destructure(): Array<number> {
+    const days_in_month = get_all_months()._d;
+    const destructure_arr = new Array(12);
+    const offset: number = 11;
+    // Lixkor - January
+    destructure_arr[6] = days_in_month[0];
+    // Todob - February
+    destructure_arr[7] = days_in_month[1];
+    // Aminla - March
+    destructure_arr[8] = days_in_month[2];
+    // Fushade - April
+    destructure_arr[9] = days_in_month[3];
+    // Gu'soore - May
+    destructure_arr[10] = days_in_month[4];
+    // Samuulad - June
+    destructure_arr[11] = days_in_month[5] + offset;
+    // Karan - July
+    destructure_arr[0] = days_in_month[6] - offset;
+    // Habar-adhi - August
+    destructure_arr[1] = days_in_month[7];
+    // Diraac-good - September
+    destructure_arr[2] = days_in_month[8];
+    // Dayrweyn - October
+    destructure_arr[3] = days_in_month[9];
+    // Ximir - November
+    destructure_arr[4] = days_in_month[10];
+    // Xays - December
+    destructure_arr[5] = days_in_month[11];
+    return destructure_arr;
+}
+
+/* Helper function: calculateCurrentDay */
+
+function calculate_months(month_index: number): number {
+    switch(true) {
+        case (month_index > 11):
+            throw new Error(`${month_index} is out of the index. The month index must be between 0 and 11.`).message;
+    }
+    // g - Gregorian
+    let g_month: number =  0;
+    // cs - current somalian month
+    const cs_month = () : void =>  {
+        switch (month_index) {
+            case 0: g_month = 6; break;
+            case 1: g_month = 7; break;
+            case 2: g_month = 8; break;
+            case 3: g_month = 9; break;
+            case 4: g_month = 10; break;
+            case 5: g_month = 11; break;
+            case 6: g_month = 0; break;
+            case 7: g_month = 1; break;
+            case 8: g_month = 2; break;
+            case 9: g_month = 3; break;
+            case 10: g_month = 4; break;
+            case 11: g_month = 5; break;
+        }
+    }
+
+    for(let index = 0; index < destructure().length; index++) {
+        cs_month();
+    }
+    // s - Somalian
+    let s_month: number;
+
+    let i = 0;
+    let sum = 0;
+
+    while (i <= g_month) {
+        s_month = destructure()[i];
+        sum += s_month;
+        i++;
+    }
+
+    return sum;
+}
+
 
 /*
      SomaliDate Class 
@@ -132,6 +216,11 @@ class SomaliDate {
     SomCalendar Class
 */
 
+type With = {
+    with_full_month: number,
+    without_full_month: number
+}
+
 class SomCalendar extends SomaliDate {
     constructor() {
         super();
@@ -140,7 +229,7 @@ class SomCalendar extends SomaliDate {
     getToday(): { day: number, name: string } {
         if (!somaliDays) throw new Error("somaliDays is not found!");
         return {
-            day: timeDifference(this.getFullYear(), this.getMonth(), this.getDate()),
+            day: 0,
             name: somaliDays[this.getDay()]
         };
     }
@@ -148,6 +237,14 @@ class SomCalendar extends SomaliDate {
     getCurrentMonth(): string {
         if (!somaliMonths) throw new Error("somaliMonths is not found!");
         return somaliMonths[this.getMonth()];
+    }
+
+    
+    getSumOfMonths(number_of_months: number = this.getMonth()): With {
+        return {
+            with_full_month: calculate_months(number_of_months),
+            without_full_month: calculate_months(number_of_months) - (get_all_months()._d[this.getMonth()] - this.getDate())
+        };
     }
 
     newYear(): { isNewYear: boolean, remainedDays: number, name: string } {
@@ -161,4 +258,4 @@ class SomCalendar extends SomaliDate {
 
 }
 
-console.log(new SomCalendar().newYear().name);
+console.log(new SomCalendar().getSumOfMonths());
