@@ -81,13 +81,19 @@ interface Months_Info {
     _d: Array<number>
 }
 
-const info: Months_Info = {
+let info: Months_Info = {
     total_days: 0,
     _m: [],
     _d: []
 }
 
 function get_all_months() {
+    // resetting
+    info = {
+        total_days: 0,
+        _m: [],
+        _d: []
+    }
     const date = new Date();
     for (let i = 0; i < _months.length; i++) {
         info._m.push({
@@ -229,7 +235,7 @@ class SomCalendar extends SomaliDate {
     getToday(): { day: number, name: string } {
         if (!somaliDays) throw new Error("somaliDays is not found!");
         return {
-            day: 0,
+            day: this.getSumOfMonths().without_full_month,
             name: somaliDays[this.getDay()]
         };
     }
@@ -251,11 +257,11 @@ class SomCalendar extends SomaliDate {
         if (!somaliFestival) throw new Error("somaliFestival is not found!");
         return {
             isNewYear: this.getToday().day >= 365 ? true : false,
-            remainedDays: 365 - this.getToday().day,
+            remainedDays: get_all_months().total_days - this.getToday().day,
             name: somaliFestival
         }
     }
 
 }
 
-console.log(new SomCalendar().getSumOfMonths());
+console.log(new SomCalendar().newYear().remainedDays);
