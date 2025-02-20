@@ -7,7 +7,7 @@ class SomCalendar extends SomaliDate {
         super();
     }
 
-    getToday(): { day: number; name: string } {
+    getToday(): { day: number, name: string } {
         if (!somaliDays) throw new Error("somaliDays is not found!");
         return {
             day: timeDifference(this.getFullYear(), this.getMonth(), this.getDate()),
