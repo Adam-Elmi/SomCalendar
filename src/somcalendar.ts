@@ -65,6 +65,10 @@ const somaliMonths: Array<string> = [
 
 const somaliFestival: string = "Dabshid";
 
+/*
+    Helper function: timeDifference
+*/
+
 function timeDifference(currentYear: number, currentMonth: number, currentDay: number): number {
     let start = new Date(`${currentYear - 1}-7-20`);
     let end = new Date(`${currentYear}-${currentMonth}-${currentDay}`);
@@ -74,9 +78,11 @@ function timeDifference(currentYear: number, currentMonth: number, currentDay: n
 
     return days;
 };
-// const d = new Date();
-// console.log(timeDifference(d.getFullYear(), d.getMonth(), d.getDate()));
 
+
+/*
+    Helper function: get_all_months
+*/
 const _months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -93,6 +99,10 @@ function get_all_months() {
     }
     return _m;
 };
+
+/*
+     SomaliDate Class 
+*/
 
 class SomaliDate {
     private date: Date;
@@ -118,7 +128,9 @@ class SomaliDate {
     }
 }
 
-
+/*
+    SomCalendar Class
+*/
 
 class SomCalendar extends SomaliDate {
     constructor() {
