@@ -116,7 +116,7 @@ function get_all_months() {
 function destructure(): Array<number> {
     const days_in_month = get_all_months()._d;
     const destructure_arr = new Array(12);
-    const offset: number = 11;
+    const offset: number = 19;
     // Lixkor - January
     destructure_arr[6] = days_in_month[0];
     // Todob - February
@@ -264,4 +264,4 @@ class SomCalendar extends SomaliDate {
 
 }
 
-console.log(new SomCalendar().newYear().remainedDays);
+console.log(new SomCalendar().getToday().day);
