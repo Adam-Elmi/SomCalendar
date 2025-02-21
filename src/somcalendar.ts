@@ -202,6 +202,10 @@ type With = {
     with_full_month: number,
     without_full_month: number
 }
+type _Date = {
+    _month: number,
+    _day: number
+}
 
 class SomCalendar extends SomaliDate {
     constructor() {
@@ -238,32 +242,22 @@ class SomCalendar extends SomaliDate {
         }
     }
 
-    convertTo(calendar: string): {year: number, month: number, day: number} {
-        const _date: number[] = [];
-        let _G: number = cs_month(0, this.getMonth()); 
-        switch(calendar.toLowerCase()) {
-            // Somali
-            // S | s
-            case "s":
-                _date[0] = _G;
-                _date[1] = this.getToday().day
-                break;
-            // Gregorian
-            // G | g
-            case "g":
-                _date[0] = this.getMonth();
-                _date[1] = this.getDate()
-                break;
-        }
+    convertToSomali(m?: number, d?: number): {year: number, month: number, day: number} {
+        const _date: _Date = {
+            _month: 0,
+            _day: 0
+        };
+        let _G: number = cs_month(0, m ? m : this.getMonth()); 
+        _date._month = _G;
+        _date._day = d ?? this.getToday().day;
         return {
             year: this.getFullYear(),
-            month: _date[0] + 1,
-            day: _date[1]
+            month: _date._month + 1,
+            day: _date._day ?? this.getToday()
         }
     }
 
 }
 
-console.log(new SomCalendar().convertTo("G"));
-console.log(new SomCalendar().convertTo("s"));
-console.log(new SomCalendar().getSumOfMonths().with_full_month);
+console.log(new SomCalendar().convertToSomali());
+console.log(new SomCalendar().getSumOfMonths().without_full_month);
