@@ -264,7 +264,7 @@ class SomCalendar extends SomaliDate {
             // Somali
             // S | s
             case "s":
-                _date[0] = _G + 1;
+                _date[0] = _G;
                 _date[1] = this.getToday().day
                 break;
             // Gregorian
@@ -285,3 +285,4 @@ class SomCalendar extends SomaliDate {
 
 console.log(new SomCalendar().convertTo("G"));
 console.log(new SomCalendar().convertTo("s"));
+console.log(new SomCalendar().getSumOfMonths().with_full_month);
