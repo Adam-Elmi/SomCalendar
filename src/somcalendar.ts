@@ -159,15 +159,10 @@ function calculate_months(month_index: number): number {
     // g - Gregorian
     let g_month: number = cs_month(0, month_index);
     
-    // s - Somalian
-    let s_month: number = 0;
-    
-    let i = 0;
-    let sum = 0;
+    let sum = 0, i = 0;
+
     while (i <= g_month) {
-        s_month = destructure()[i];
-        sum += s_month;
-        i++;
+        sum += destructure()[i++];
     }
 
     return sum;
