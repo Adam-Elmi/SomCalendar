@@ -64,11 +64,7 @@ const somaliMonths: Array<string> = [
 */
 
 const somaliFestival: string = "Dabshid";
-
-
-/*
-    Helper function: get_all_months
-*/
+/* ----------------------------------------- */
 const _months: Array<string> = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -86,7 +82,9 @@ let info: Months_Info = {
     _m: [],
     _d: []
 }
-
+/*
+    Helper function: get_all_months
+*/
 function get_all_months() {
     // resetting
     info = {
@@ -108,11 +106,9 @@ function get_all_months() {
     }, 0);
     return info;
 };
-
 /*
     Helper function: destructure
 */
-
 function destructure(): Array<number> {
     const days_in_month = get_all_months()._d;
     const destructure_arr = new Array(12);
@@ -143,6 +139,29 @@ function destructure(): Array<number> {
     destructure_arr[5] = days_in_month[11];
     return destructure_arr;
 }
+/*
+     Helper function: cs_month
+        - cs - Current somalian month
+        - g - Gregorian
+        - i - Month index
+ */
+ const cs_month = (_g: number = 0, _i: number) =>  {
+    switch (_i) {
+        case 0: _g = 6; break;
+        case 1: _g = 7; break;
+        case 2: _g = 8; break;
+        case 3: _g = 9; break;
+        case 4: _g = 10; break;
+        case 5: _g = 11; break;
+        case 6: _g = 0; break;
+        case 7: _g = 1; break;
+        case 8: _g = 2; break;
+        case 9: _g = 3; break;
+        case 10: _g = 4; break;
+        case 11: _g = 5; break;
+    }
+    return _g;
+}
 
 /* Helper function: calculateCurrentDay */
 
@@ -152,34 +171,13 @@ function calculate_months(month_index: number): number {
             throw new Error(`${month_index} is out of the index. The month index must be between 0 and 11.`).message;
     }
     // g - Gregorian
-    let g_month: number =  0;
-    // cs - current somalian month
-    const cs_month = () : void =>  {
-        switch (month_index) {
-            case 0: g_month = 6; break;
-            case 1: g_month = 7; break;
-            case 2: g_month = 8; break;
-            case 3: g_month = 9; break;
-            case 4: g_month = 10; break;
-            case 5: g_month = 11; break;
-            case 6: g_month = 0; break;
-            case 7: g_month = 1; break;
-            case 8: g_month = 2; break;
-            case 9: g_month = 3; break;
-            case 10: g_month = 4; break;
-            case 11: g_month = 5; break;
-        }
-    }
-
-    for(let index = 0; index < destructure().length; index++) {
-        cs_month();
-    }
+    let g_month: number = cs_month(0, month_index);
+    
     // s - Somalian
-    let s_month: number;
-
+    let s_month: number = 0;
+    
     let i = 0;
     let sum = 0;
-
     while (i <= g_month) {
         s_month = destructure()[i];
         sum += s_month;
@@ -188,12 +186,9 @@ function calculate_months(month_index: number): number {
 
     return sum;
 }
-
-
 /*
      SomaliDate Class 
 */
-
 class SomaliDate {
     private date: Date;
 
@@ -262,6 +257,26 @@ class SomCalendar extends SomaliDate {
         }
     }
 
+    convertTo(calendar: string): {year: number, month: number, day: number} {
+        const _date: number[] = [];
+        let _G: number = cs_month(0, this.getMonth()); 
+        switch(calendar) {
+            // Somali
+            case "s":
+                _date[0] = _G + 1;
+                break;
+            // Gregorian
+            case "g":
+                _date[0] = this.getMonth();
+                break;
+        }
+        return {
+            year: this.getFullYear(),
+            month: _date[0] + 1,
+            day: 0
+        }
+    }
+
 }
 
-console.log(new SomCalendar().getToday().day);
+console.log(new SomCalendar().convertTo("g"));
