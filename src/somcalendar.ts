@@ -146,21 +146,7 @@ function destructure(): Array<number> {
         - i - Month index
  */
  const cs_month = (_g: number = 0, _i: number) =>  {
-    switch (_i) {
-        case 0: _g = 6; break;
-        case 1: _g = 7; break;
-        case 2: _g = 8; break;
-        case 3: _g = 9; break;
-        case 4: _g = 10; break;
-        case 5: _g = 11; break;
-        case 6: _g = 0; break;
-        case 7: _g = 1; break;
-        case 8: _g = 2; break;
-        case 9: _g = 3; break;
-        case 10: _g = 4; break;
-        case 11: _g = 5; break;
-    }
-    return _g;
+    return [6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5][_i]; 
 }
 
 /* Helper function: calculateCurrentDay */
