@@ -260,23 +260,28 @@ class SomCalendar extends SomaliDate {
     convertTo(calendar: string): {year: number, month: number, day: number} {
         const _date: number[] = [];
         let _G: number = cs_month(0, this.getMonth()); 
-        switch(calendar) {
+        switch(calendar.toLowerCase()) {
             // Somali
+            // S | s
             case "s":
                 _date[0] = _G + 1;
+                _date[1] = this.getToday().day
                 break;
             // Gregorian
+            // G | g
             case "g":
                 _date[0] = this.getMonth();
+                _date[1] = this.getDate()
                 break;
         }
         return {
             year: this.getFullYear(),
             month: _date[0] + 1,
-            day: 0
+            day: _date[1]
         }
     }
 
 }
 
-console.log(new SomCalendar().convertTo("g"));
+console.log(new SomCalendar().convertTo("G"));
+console.log(new SomCalendar().convertTo("s"));
