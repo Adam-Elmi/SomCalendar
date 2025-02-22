@@ -111,7 +111,7 @@ function get_all_months() {
 */
 function destructure(): Array<number> {
     const days_in_month = get_all_months()._d;
-    const destructure_arr = new Array(12);
+    const destructure_arr = new Array(12).fill(0);;
     const offset: number = 19;
     // Lixkor - January
     destructure_arr[6] = days_in_month[0];
@@ -253,11 +253,9 @@ class SomCalendar extends SomaliDate {
         return {
             year: this.getFullYear(),
             month: _date._month + 1,
-            day: _date._day ?? this.getToday()
+            day: _date._day
         }
     }
 
 }
-
 console.log(new SomCalendar().convertToSomali());
-console.log(new SomCalendar().getSumOfMonths().without_full_month);
