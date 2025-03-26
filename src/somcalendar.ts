@@ -145,7 +145,7 @@ function destructure(): Array<number> {
         - g - Gregorian
         - i - Month index
  */
- const cs_month = (_g: number = 0, _i: number) =>  {
+ const cs_month = (_i: number) =>  {
     return [6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5][_i]; 
 }
 
@@ -157,7 +157,7 @@ function calculate_months(month_index: number): number {
             throw new Error(`${month_index} is out of the index. The month index must be between 0 and 11.`).message;
     }
     // g - Gregorian
-    let g_month: number = cs_month(0, month_index);
+    let g_month: number = cs_month(month_index);
     
     let sum = 0, i = 0;
 
@@ -247,15 +247,19 @@ class SomCalendar extends SomaliDate {
             _month: 0,
             _day: 0
         };
-        let _G: number = cs_month(0, m ? m : this.getMonth()); 
+        let _G: number = cs_month(m || m === 0 ? m : this.getMonth());
+        console.log(_G);
         _date._month = _G;
         _date._day = d ?? this.getToday().day;
         return {
             year: this.getFullYear(),
-            month: _date._month + 1,
+            month: _date._month,
             day: _date._day
         }
     }
 
 }
-console.log(new SomCalendar().convertToSomali());
+console.log(new SomCalendar().convertToSomali(0)); // 6
+
+
+
