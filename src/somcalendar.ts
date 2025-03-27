@@ -163,27 +163,6 @@ const cs_month = (_i: number) => {
   return [6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5][_i];
 };
 
-/* Helper function: calculateCurrentDay */
-
-function calculate_months(month_index: number): number {
-  switch (true) {
-    case month_index > 11:
-      throw new Error(
-        `${month_index} is out of the index. The month index must be between 0 and 11.`
-      ).message;
-  }
-  // g - Gregorian
-  let g_month: number = cs_month(month_index);
-
-  let sum = 0,
-    i = 0;
-
-  while (i <= g_month) {
-    sum += destructure()[i++];
-  }
-
-  return sum;
-}
 
 /* Helper function: isLeapYear */
 function isLeapYear(year: number = new Date().getFullYear()) {
@@ -198,27 +177,46 @@ function isLeapYear(year: number = new Date().getFullYear()) {
 function _g_and_s(y?: number) {
   const leap_output = isLeapYear(y);
 
-  const _g_days = Array.from(
+  const _s_days = Array.from(
     { length: leap_output ? 366 : 365 },
     (_, i) => i + 1
   );
-  const target_index = _g_days.findIndex(
+  const target_index = _s_days.findIndex(
     (v) => v === (leap_output ? 202 : 201)
   );
-  const _s_days = _g_days
+  const _g_days = _s_days
     .slice(target_index)
-    .concat(_g_days.slice(0, target_index));
+    .concat(_s_days.slice(0, target_index));
   return {
     _g_days,
     _s_days,
   };
 }
 
-
 function convert_to_s(d: number = 1, y?: number) {
     const _days = _g_and_s(y)
-    const _g_index = _days._g_days.findIndex(v => v === d);
-    return _days._s_days[_g_index]
+    const _s_index = _days._s_days.findIndex(v => v === d);
+    return _days._g_days[_s_index]
+}
+
+/* Helper function: getDays*/
+function getDays() {
+  const storeDays = new Array(12).fill(0);
+  for(let i = 0; i < storeDays.length; i++) {
+    const lastDay = new Date(new Date().getFullYear(), i + 1, 0).getDate();
+    storeDays[i] = lastDay;
+  }
+  return storeDays;
+}
+const days_of_months = getDays();
+
+/* Helper function: sum_of_days*/
+function sum_of_days() {
+  const current_month_index = days_of_months.findIndex((_, i) => i === new Date().getMonth());
+  const adjusted_days = days_of_months.slice(0, current_month_index + 1);
+  return adjusted_days.reduce((prev, cur) => {
+    return prev + cur
+  })
 }
 
 /*
@@ -274,15 +272,9 @@ class SomCalendar extends SomaliDate {
     return somaliMonths[this.getMonth()];
   }
 
-  getSumOfDays(number_of_months: number = this.getMonth()) {
-    return calculate_months(number_of_months);
-  }
-
-  withoutRemainedDays(number_of_months: number = this.getMonth()) {
-    return (
-      calculate_months(number_of_months) -
-      (get_all_months()._d[this.getMonth()] - this.getDate())
-    );
+  withoutRemainedDays() {
+    const remainedDays = (new Date(this.getFullYear(), this.getMonth() + 1, 0).getDate() - this.getDate())
+    return convert_to_s(sum_of_days() -  remainedDays)
   }
   newYear(): { isNewYear: boolean; remainedDays: number; name: string } {
     return {
@@ -302,7 +294,7 @@ class SomCalendar extends SomaliDate {
     };
     let _G: number = cs_month(m || m === 0 ? m : this.getMonth());
     _date._month = _G;
-    _date._day = d ?? this.getToday().day;
+    _date._day = convert_to_s(d) ?? this.getToday().day;
     return {
       year: this.getFullYear(),
       month: _date._month,
