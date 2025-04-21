@@ -21,24 +21,24 @@ const somaliDays: Array<string> = [
     waan halku sannadlku ka bilaabmo
     ---------------
     [Xagaa]
-    Karan (31 maalimood)  - July
-    Habar-adhi (30 maalimood) - August (31 days)
-    Diraac-good (30 maalimood) - September
+    Karan - July
+    Habar-adhi - August
+    Diraac-good - September
     ---------------
     [Dayr]
-    Dayrweyn (31 maalimood) - October
-    Ximir (30 maalimood) - November
-    Xays (30 maalimood) - December (31 days)
+    Dayrweyn - October
+    Ximir - November
+    Xays - December
     ---------------
     [Jiilaal]
-    Lixkor (31 maalimood) - January
-    Todob (30 maalimood) - February (28 days or 29 days in leap years)
-    Aminla (30 maalimood) - March (31 days)
+    Lixkor - January
+    Todob - February
+    Aminla - March
     ---------------
     [Gu’]
-    Fushade (31 maalimood) - April (30 days)
-    Gu’soore (30 maalimood) - May (31 days)
-    Samuulad (31 maalimood) - June (30 days)
+    Fushade - April
+    Gu’soore - May
+    Samuulad - June
     ---------------
 */
 
@@ -84,14 +84,14 @@ const _months: Array<string> = [
 
 interface Months_Info {
   total_days: number;
-  _m: object[];
-  _d: Array<number>;
+  _month: object[];
+  _day: Array<number>;
 }
 
 let info: Months_Info = {
   total_days: 0,
-  _m: [],
-  _d: [],
+  _month: [],
+  _day: [],
 };
 /*
     Helper function: get_all_months
@@ -100,102 +100,82 @@ function get_all_months() {
   // resetting
   info = {
     total_days: 0,
-    _m: [],
-    _d: [],
+    _month: [],
+    _day: [],
   };
   const date = new Date();
   for (let i = 0; i < _months.length; i++) {
-    info._m.push({
+    info._month.push({
       [_months[i]]: new Date(date.getFullYear(), i + 1, 0).getDate(),
     });
   }
-  info.total_days = info._m
-    .map((v) => Object.values(v).join(""))
-    .map((v) => {
-      info._d.push(parseInt(v, 10));
-      return parseInt(v, 10);
+  info.total_days = info._month
+    .map((value) => Object.values(value).join(""))
+    .map((value) => {
+      info._day.push(parseInt(value, 10));
+      return parseInt(value, 10);
     })
-    .reduce((i, c) => {
-      return i + c;
+    .reduce((initialValue, currentValue) => {
+      return initialValue + currentValue;
     }, 0);
   return info;
 }
+
 /*
-    Helper function: destructure
+  get_all_months qiimaha ama natiijada uso celinayo waxa weeye object ka kooban saddex qiimo ama properties
+  oo kala ah:
+  - total_days: total guud ee maalimaha sannadka.
+  - _month: wa array ka kooban dhamaan 12-ka bilood
+  - _days: wa array ka kooban maalimaha bil kasta ka kooban tahay
+  
 */
-function destructure(): Array<number> {
-  const days_in_month = get_all_months()._d;
-  const destructure_arr = new Array(12).fill(0);
-  const offset: number = 19;
-  // Lixkor - January
-  destructure_arr[6] = days_in_month[0];
-  // Todob - February
-  destructure_arr[7] = days_in_month[1];
-  // Aminla - March
-  destructure_arr[8] = days_in_month[2];
-  // Fushade - April
-  destructure_arr[9] = days_in_month[3];
-  // Gu'soore - May
-  destructure_arr[10] = days_in_month[4];
-  // Samuulad - June
-  destructure_arr[11] = days_in_month[5] + offset;
-  // Karan - July
-  destructure_arr[0] = days_in_month[6] - offset;
-  // Habar-adhi - August
-  destructure_arr[1] = days_in_month[7];
-  // Diraac-good - September
-  destructure_arr[2] = days_in_month[8];
-  // Dayrweyn - October
-  destructure_arr[3] = days_in_month[9];
-  // Ximir - November
-  destructure_arr[4] = days_in_month[10];
-  // Xays - December
-  destructure_arr[5] = days_in_month[11];
-  return destructure_arr;
-}
 /*
      Helper function: cs_month
         - cs - Current somalian month
-        - g - Gregorian
         - i - Month index
  */
 const cs_month = (_i: number) => {
   return [6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4, 5][_i];
 };
-
+/*
+  cs_month wa function bedelaya bisha calendarka Gregory u bedelaya bisha calendarka Somaalida
+*/
 /* Helper function: isLeapYear */
 function isLeapYear(year: number = new Date().getFullYear()) {
   const february_lastDay = new Date(year, 2, 0).getDate();
   if (february_lastDay === 29) {
     return true;
-  } else {
-    return false;
-  }
+  };
+  return false; 
 }
+/* Helper function: getYearDays*/
+function getYearDays(year?: number) {
+  const leap_output = isLeapYear(year);
 
-function _g_and_s(y?: number) {
-  const leap_output = isLeapYear(y);
-
-  const _s_days = Array.from(
+  const _somali_days = Array.from(
     { length: leap_output ? 366 : 365 },
     (_, i) => i + 1
   );
-  const target_index = _s_days.findIndex(
-    (v) => v === (leap_output ? 202 : 201)
+  const target_index = _somali_days.findIndex(
+    (value) => value === (leap_output ? 202 : 201)
   );
-  const _g_days = _s_days
+  console.log(leap_output)
+  const _gregory_days = _somali_days
     .slice(target_index)
-    .concat(_s_days.slice(0, target_index));
+    .concat(_somali_days.slice(0, target_index));
   return {
-    _g_days,
-    _s_days,
+    _gregory_days,
+    _somali_days,
   };
 }
-
-function convert_to_s(d: number = 1, y?: number) {
-  const _days = _g_and_s(y);
-  const _s_index = _days._s_days.findIndex((v) => v === d);
-  return _days._g_days[_s_index];
+/*
+  - getYearDays wa function so celinaya dhamaan maalimaha sannadka ee labada calendar(Gregory and Somali)
+*/
+/* Helper function: convert_to_somali*/
+function convert_to_somali(day: number = 1, y?: number) {
+  const _days = getYearDays(y);
+  const _somali_index = _days._somali_days.findIndex((value) => value === day);
+  return _days._gregory_days[_somali_index];
 }
 
 /* Helper function: getDays*/
@@ -247,15 +227,13 @@ class SomaliDate {
   }
 }
 
-/*
-    SomCalendar Class
-*/
-
 type _Date = {
   _month: number;
   _day: number;
 };
-
+/*
+    SomCalendar Class
+*/
 class SomCalendar extends SomaliDate {
   constructor() {
     super();
@@ -277,7 +255,7 @@ class SomCalendar extends SomaliDate {
     const remainedDays =
       new Date(this.getFullYear(), this.getMonth() + 1, 0).getDate() -
       this.getDate();
-    return convert_to_s(sum_of_days() - remainedDays);
+    return convert_to_somali(sum_of_days() - remainedDays);
   }
   newYear(): { isNewYear: boolean; remainedDays: number; name: string } {
     return {
@@ -288,8 +266,9 @@ class SomCalendar extends SomaliDate {
   }
 
   convertToSomali(
+    d?: number,
     m?: number,
-    d?: number
+    y: number = this.getFullYear()
   ): { year: number; month: number; day: number } {
     const _date: _Date = {
       _month: 0,
@@ -297,11 +276,14 @@ class SomCalendar extends SomaliDate {
     };
     let _G: number = cs_month(m || m === 0 ? m : this.getMonth());
     _date._month = _G;
-    _date._day = convert_to_s(d) ?? this.getToday().day;
+    _date._day = convert_to_somali(d) ?? this.getToday().day;
     return {
-      year: this.getFullYear(),
+      year: y,
       month: _date._month,
       day: _date._day,
     };
   }
 }
+const somcalendar = new SomCalendar();
+// console.log(somcalendar.convertToSomali(365, 1, 2034));
+// console.log(somcalendar.getToday())
